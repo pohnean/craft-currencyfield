@@ -1,0 +1,42 @@
+{
+    "name": "pohnean/craft-currencyfield",
+    "description": "Multi-lingual currency dropdown field type for Craft CMS",
+    "type": "craft-plugin",
+    "version": "1.0.1",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "currency",
+        "field"
+    ],
+    "support": {
+        "docs": "https://github.com/pohnean/craft-currencyfield/blob/v1/README.md",
+        "issues": "https://github.com/pohnean/craft-currencyfield/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tai Poh Nean",
+            "homepage": "https://github.com/pohnean"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0",
+        "commerceguys/intl": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "pohnean\\currencyfield\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Currency Field",
+        "handle": "currency-field",
+        "hasCpSettings": false,
+        "hasCpSection": false,
+        "changelogUrl": "https://raw.githubusercontent.com/pohnean/craft-currencyfield/v1/CHANGELOG.md",
+        "class": "pohnean\\currencyfield\\Plugin"
+    }
+}
