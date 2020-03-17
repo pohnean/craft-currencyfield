@@ -4,7 +4,9 @@ namespace pohnean\currencyfield;
 
 use craft\events\RegisterComponentTypesEvent;
 use craft\services\Fields;
+use craft\web\twig\variables\CraftVariable;
 use pohnean\currencyfield\fields\CurrencyField;
+use pohnean\currencyfield\variables\CurrencyFieldVariable;
 use yii\base\Event;
 
 /**

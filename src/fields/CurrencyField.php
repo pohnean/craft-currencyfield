@@ -5,10 +5,12 @@ namespace pohnean\currencyfield\fields;
 use CommerceGuys\Intl\Currency\Currency;
 use CommerceGuys\Intl\Currency\CurrencyRepository;
 use Craft;
+use craft\base\Element;
 use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
 use craft\base\SortableFieldInterface;
+use pohnean\currencyfield\models\CurrencyData;
 use yii\db\Schema;
 
 class CurrencyField extends Field implements PreviewableFieldInterface, SortableFieldInterface
@@ -81,5 +83,36 @@ class CurrencyField extends Field implements PreviewableFieldInterface, Sortable
 		});
 
 		return $options;
+	}
+
+	/**
+	 * @param $value
+	 * @param Element|ElementInterface|null $element
+	 * @return Currency|mixed|null
+	 */
+	public function normalizeValue($value, ElementInterface $element = null)
+	{
+		if ($value == null && $value === '') {
+			return null;
+		}
+
+		if ($value instanceof Currency) {
+			return $value;
+		}
+
+		$language = $element->site->language ?? 'en';
+
+		$repository = new CurrencyRepository($language);
+
+		return $repository->get($value);
+	}
+
+	public function serializeValue($value, ElementInterface $element = null)
+	{
+		if ($value instanceof Currency) {
+			$value = $value->getCurrencyCode();
+		}
+
+		return parent::serializeValue($value, $element);
 	}
 }

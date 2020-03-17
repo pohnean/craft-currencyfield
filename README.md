@@ -2,7 +2,19 @@
 
 # Currency field plugin for Craft CMS 3.x
 
-Currency dropdown field type.
+A multi-language Currency dropdown field type.
+
+## Usage in twig templates
+```
+# Printing the currency code
+{{ item.currency }} // Outputs EUR
+
+# Printing the currency symbol
+{{ item.currency.symbol }} // Outputs €
+
+# Printing the local currency name (site language is zh-Hans)
+{{ item.currency.name }} // Outputs 欧元 
+```
 
 ## Requirements
 
