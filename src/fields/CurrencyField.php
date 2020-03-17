@@ -92,7 +92,7 @@ class CurrencyField extends Field implements PreviewableFieldInterface, Sortable
 	 */
 	public function normalizeValue($value, ElementInterface $element = null)
 	{
-		if ($value == null && $value === '') {
+		if ($value == null || $value === '') {
 			return null;
 		}
 
