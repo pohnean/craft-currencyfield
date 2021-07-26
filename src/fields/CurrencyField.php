@@ -13,6 +13,7 @@ use yii\db\Schema;
 use CommerceGuys\Intl\Currency\Currency;
 use CommerceGuys\Intl\Currency\CurrencyRepository;
 
+use pohnean\currencyfield\gql\arguments\fields\CurrencyField as CurrencyFieldArguments;
 use pohnean\currencyfield\gql\resolvers\fields\CurrencyField as CurrencyFieldResolver;
 use pohnean\currencyfield\gql\types\fields\CurrencyField as CurrencyFieldType;
 
@@ -39,6 +40,7 @@ class CurrencyField extends Field implements PreviewableFieldInterface, Sortable
         return [
             'name' => $this->handle,
             'type' => CurrencyFieldType::getType(),
+			'args' => CurrencyFieldArguments::getArguments(),
             'resolve' => CurrencyFieldResolver::class . '::resolve',
         ];
     }
