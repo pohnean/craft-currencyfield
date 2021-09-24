@@ -1,5 +1,9 @@
 # Currency Field Changelog
 
+## 1.0.4 - 2021-09-24
+### Enhancement
+- Added GraphQL support.
+
 ## 1.0.3 - 2020-03-17
 ### Bug Fix
 - Fix bug when currency value is empty
