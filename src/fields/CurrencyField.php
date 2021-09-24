@@ -2,16 +2,20 @@
 
 namespace pohnean\currencyfield\fields;
 
-use CommerceGuys\Intl\Currency\Currency;
-use CommerceGuys\Intl\Currency\CurrencyRepository;
 use Craft;
 use craft\base\Element;
 use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\PreviewableFieldInterface;
 use craft\base\SortableFieldInterface;
-use pohnean\currencyfield\models\CurrencyData;
 use yii\db\Schema;
+
+use CommerceGuys\Intl\Currency\Currency;
+use CommerceGuys\Intl\Currency\CurrencyRepository;
+
+use pohnean\currencyfield\gql\arguments\fields\CurrencyField as CurrencyFieldArguments;
+use pohnean\currencyfield\gql\resolvers\fields\CurrencyField as CurrencyFieldResolver;
+use pohnean\currencyfield\gql\types\fields\CurrencyField as CurrencyFieldType;
 
 class CurrencyField extends Field implements PreviewableFieldInterface, SortableFieldInterface
 {
@@ -27,6 +31,19 @@ class CurrencyField extends Field implements PreviewableFieldInterface, Sortable
 	{
 		return Schema::TYPE_STRING . '(3)';
 	}
+
+	/**
+     * @inheritdoc
+     */
+    public function getContentGqlType()
+    {
+        return [
+            'name' => $this->handle,
+            'type' => CurrencyFieldType::getType(),
+			'args' => CurrencyFieldArguments::getArguments(),
+            'resolve' => CurrencyFieldResolver::class . '::resolve',
+        ];
+    }
 
 	/**
 	 * @inheritdoc

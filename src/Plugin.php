@@ -2,12 +2,14 @@
 
 namespace pohnean\currencyfield;
 
+use craft\events\RegisterGqlTypesEvent;
 use craft\events\RegisterComponentTypesEvent;
+use craft\services\Gql;
 use craft\services\Fields;
-use craft\web\twig\variables\CraftVariable;
-use pohnean\currencyfield\fields\CurrencyField;
-use pohnean\currencyfield\variables\CurrencyFieldVariable;
 use yii\base\Event;
+
+use pohnean\currencyfield\fields\CurrencyField;
+use pohnean\currencyfield\gql\types\fields\CurrencyField as CurrencyFieldType;
 
 /**
  * Class Currencyselect
@@ -53,5 +55,13 @@ class Plugin extends \craft\base\Plugin
 				$event->types[] = CurrencyField::class;
 			}
 		);
+
+		Event::on(
+            Gql::class,
+            Gql::EVENT_REGISTER_GQL_TYPES,
+            function (RegisterGqlTypesEvent $event) {
+                $event->types[] = CurrencyFieldType::class;
+            }
+        );
 	}
 }
